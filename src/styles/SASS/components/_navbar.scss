@@ -1,0 +1,42 @@
+#navbar_mobile {
+  @include flex(row, nowrap, space-between, center);
+  padding: 1em 2em;
+  color: $prim;
+  svg {
+    font-size: 1.5rem;
+  }
+  .menu-button {
+    width: 2rem;
+  }
+  .menu {
+    @include flex(column, nowrap, start, center);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1em 2em;
+    z-index: 2;
+    background-color: $accent;
+    transition: all 200ms ease-in;
+    &.disabledL {
+      left: -100%;
+    }
+    &.disabledR {
+      left: 100%;
+    }
+    svg {
+      align-self: start;
+    }
+    .links {
+      flex-grow: 1;
+      @include flex(column, nowrap, center, center);
+    }
+  }
+  // .logo {
+
+  // }
+  .search-button {
+    width: 2rem;
+  }
+}

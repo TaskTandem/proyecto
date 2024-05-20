@@ -1,0 +1,4 @@
+.home-container {
+  @include flex(column, nowrap, center, center);
+  gap: 2rem;
+}
