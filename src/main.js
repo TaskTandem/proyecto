@@ -11,9 +11,9 @@ import piniaPersistedState from 'pinia-plugin-persistedstate'
 //FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch, faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faBars, faTimes, faSignIn, faPlus, faPencil, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-const icons = { faSearch, faBars, faTimes, faInstagram, faWhatsapp }
+const icons = { faSearch, faBars, faTimes, faSignIn, faPlus, faPencil, faCheckCircle, faTimesCircle, faInstagram, faWhatsapp }
 {/* <fa icon="bars" />
 <fa :icon="['fab', 'instagram']" /> */}
 

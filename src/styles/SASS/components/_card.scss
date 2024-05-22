@@ -10,6 +10,7 @@
     text-align: center;
     padding: 1em 1.25em;
     .name {
+      max-width: 100%;
       font-size: 1.75rem;
       color: $prim;
     }
@@ -34,6 +35,21 @@
             color: $secondary;
           }
         }
+      }
+    }
+    .isntAvailable {
+      color: grey;
+      font-size: 2rem;
+    }
+  }
+  .button-container {
+    @include flex(row, nowrap, center, center);
+    gap: 1rem;
+    .button {
+      margin: 0;
+      &.delete {
+        color: white;
+        background: #b90c0c;
       }
     }
   }

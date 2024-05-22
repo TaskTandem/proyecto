@@ -64,6 +64,9 @@ form, input, textarea, select, button, label {
   background-color: transparent;
   color: inherit;
 }
+form:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, label:focus-visible {
+  outline: none;
+}
 
 table, tr, td {
   border-collapse: collapse;
@@ -85,6 +88,8 @@ body {
 }
 body #content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -146,7 +151,7 @@ body #content {
   width: 100vw;
   height: 100vh;
   padding: 1em 2em;
-  z-index: 2;
+  z-index: 3;
   background-color: #0F4037;
   transition: all 200ms ease-in;
 }
@@ -187,6 +192,7 @@ body #content {
   padding: 1em 1.25em;
 }
 .card-container .information .name {
+  max-width: 100%;
   font-size: 1.75rem;
   color: #2BD9A8;
 }
@@ -222,6 +228,24 @@ body #content {
   text-decoration: line-through;
   color: #A7F2BA;
 }
+.card-container .information .isntAvailable {
+  color: grey;
+  font-size: 2rem;
+}
+.card-container .button-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.card-container .button-container .button {
+  margin: 0;
+}
+.card-container .button-container .button.delete {
+  color: white;
+  background: #b90c0c;
+}
 
 .button {
   display: flex;
@@ -233,12 +257,48 @@ body #content {
   width: max-content;
   background-color: #2BD9A8;
   color: #0F4037;
-  padding: 1em 1em;
+  padding: 1em;
   margin: auto;
   border-radius: 0.5rem;
 }
 .button svg {
   font-size: 1.75rem;
+}
+
+.add-product {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 2;
+  border-radius: 100%;
+  background-color: #A7F2BA;
+}
+
+.add-form {
+  padding: 0.7em;
+}
+.add-form svg {
+  font-size: 1rem;
+}
+
+input {
+  width: 100%;
+  margin: auto;
+  padding: 0.5em;
+  background-color: #2BD9A8;
+  color: black;
+  border-radius: 0.5rem;
+  transition: all 100ms linear;
+  text-align: center;
+}
+input:focus {
+  background-color: #A7F2BA;
+}
+input::-moz-placeholder {
+  color: black;
+}
+input::placeholder {
+  color: black;
 }
 
 .home-container {
@@ -247,4 +307,93 @@ body #content {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  margin: 1em 0;
+}
+
+.login-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.login-container .form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 90%;
+  padding: 2em;
+  background: #0F4037;
+  border-radius: 0.5rem;
+}
+
+.add-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+}
+.add-container .title {
+  font-size: 1.5rem;
+}
+.add-container .form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 2em 1em;
+}
+.add-container .form .add-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+}
+.add-container .form .list {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.add-container .form .list .item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+}
+.add-container .form .list .item p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.add-container .form .list .item svg {
+  color: #b90c0c;
+}
+.add-container .form .checkbox {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.add-container .form .checkbox svg {
+  font-size: 2rem;
+}
+.add-container .form .checkbox .true {
+  color: #13c913;
+}
+.add-container .form .checkbox .false {
+  color: #b90c0c;
 }/*# sourceMappingURL=main.css.map */

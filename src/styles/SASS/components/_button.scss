@@ -4,10 +4,26 @@
   width: max-content;
   background-color: $prim;
   color: $accent;
-  padding: 1em 1em;
+  padding: 1em;
   margin: auto;
   border-radius: .5rem;
   svg {
     font-size: 1.75rem;
+  }
+}
+
+.add-product {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 2;
+  border-radius: 100%;
+  background-color: $secondary;
+}
+
+.add-form {
+  padding: .7em;
+  svg {
+    font-size: 1rem;
   }
 }

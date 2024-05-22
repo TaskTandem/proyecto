@@ -1,0 +1,50 @@
+.add-container {
+  @include flex(column, nowrap, start, center);
+  .title {
+    font-size: 1.5rem;
+  }
+  .form {
+    @include flex(column, nowrap, center, center);
+    gap: 1rem;
+    width: 100%;
+    padding: 2em 1em;
+    .add-item {
+      @include flex(row, nowrap, center, center);
+      gap: .5em;
+      width: 100%;
+    }
+    .list {
+      @include flex(column, nowrap, center, center);
+      gap: 1rem;
+      width: 100%;
+      .item {
+        @include flex(row, nowrap, center, center);
+        gap: 1rem;
+        max-width: 100%;
+        p {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          line-clamp: 1; 
+          -webkit-box-orient: vertical;
+        }
+        svg {
+          color: #b90c0c;
+        }
+      }
+    }
+    .checkbox {
+      @include flex(row, nowrap, center, center);
+      gap: 2rem;
+      svg {
+        font-size: 2rem;
+      }
+      .true {
+        color: #13c913;
+      }
+      .false {
+        color: #b90c0c;
+      }
+    }
+  }
+}
