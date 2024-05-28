@@ -1,0 +1,52 @@
+.category-container {
+  @include flex(column, nowrap, center, center);
+  gap: 4rem;
+  .add {
+    display: none;
+    width: 90%;
+    .select {
+      @include flex(row, nowrap, center, center);
+      margin: 1rem 0;
+      gap: 1rem;
+      select {
+        padding: 0 .5rem;
+        color: $secondary;
+        option {
+          color: black;
+          background: $prim;
+        }
+      }
+    }
+  }
+  .delete {
+    display: none;
+    width: 80%;
+    .parent {
+      position: relative;
+      margin-bottom: 2rem;
+      div:first-child {
+        @include flex(row, nowrap, space-between, center);
+        p {
+         color: $prim;
+         font-size: 1.5rem 
+        }
+        span {
+          background: $accent;
+          padding: .75em;
+          border-radius: .5rem
+        }
+      }
+      .childs {
+        @include flex(row, nowrap, start, center);
+        gap: 1rem;
+        margin: 1rem 2rem;
+        svg {
+          color: #b90c0c;
+        }
+      }
+    }
+  }
+  .active {
+    display: block;
+  }
+}

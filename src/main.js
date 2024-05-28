@@ -19,9 +19,9 @@ const icons = { faSearch, faBars, faTimes, faSignIn, faPlus, faPencil, faCheckCi
 
 const app = createApp(App)
 const pinia = createPinia()
-pinia.use(piniaPersistedState)
 library.add(icons)
-app.use(pinia)
 app.use(router)
+app.use(pinia)
+pinia.use(piniaPersistedState)
 app.component('fa', FontAwesomeIcon)
 app.mount('#app')

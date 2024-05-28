@@ -1,19 +1,20 @@
 <script setup>
 //vue
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 //components
 import Card from '@/components/Card.vue';
+//helpers
+import { isAuthenticated } from '@/helpers/authentication';
 
 const data = reactive({
   name: '',
-  pricePesos: null,
-  promotionalPricePesos: null,
-  priceDollar: null,
-  promotionalPriceDollar: null,
+  price: null,
+  promotionalPrice: null,
   specification: [],
   description: '',
   images: [],
-  isAvailable: true,
+  categoryIds: [],
+  isAvailable: true
 })
 
 const addData = (model) => {
@@ -28,6 +29,9 @@ const deleteData = (model, index) => {
   data[model].splice(index, 1)
 }
 
+onMounted(async () => {
+  isAuthenticated()
+})
 </script>
 
 <template>
@@ -38,13 +42,9 @@ const deleteData = (model, index) => {
     <div class="form">
       <input type="text" placeholder="Nombre del producto" v-model="data.name">
 
-      <input type="number" placeholder="Precio en pesos" v-model="data.pricePesos">
+      <input type="number" placeholder="Precio en dolares" v-model="data.price">
 
-      <input type="number" placeholder="Promocion en pesos" v-model="data.promotionalPricePesos">
-
-      <input type="number" placeholder="Precio en dolares" v-model="data.priceDollar">
-
-      <input type="number" placeholder="Promocion en dolares" v-model="data.promotionalPriceDollar">
+      <input type="number" placeholder="Promocion en dolares" v-model="data.promotionalPrice">
 
       <div class="add-item">
         <input id="specification" type="text" placeholder="Agregar una especificacion">
@@ -83,7 +83,7 @@ const deleteData = (model, index) => {
 
     <Card :data="data" :add="true" />
 
-    <div class="button">
+    <div v-if="data.name && data.price && data.images.length > 0 && data.categoryIds.length > 0" class="button">
       <fa icon="plus" />
       <span>Agregar producto</span>
     </div>

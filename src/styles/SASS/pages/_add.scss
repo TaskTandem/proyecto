@@ -1,8 +1,5 @@
 .add-container {
   @include flex(column, nowrap, start, center);
-  .title {
-    font-size: 1.5rem;
-  }
   .form {
     @include flex(column, nowrap, center, center);
     gap: 1rem;

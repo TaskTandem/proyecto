@@ -1,14 +1,17 @@
 <script setup>
+//store
+import { useAdminStore } from '@/stores';
+const { logged } = useAdminStore()
 //swiper
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 const modules = [Pagination];
 //props
 defineProps(['data', 'add'])
 
-const admin = true;
+const admin = false;
 </script>
 
 <template>
@@ -37,13 +40,9 @@ const admin = true;
         <p>{{ data.description }}</p>
       </div>
       <div v-if="data.isAvailable" class="price-container">
-        <div v-if="data.pricePesos" class="price">
-          <span :class="{promotion: data.promotionalPricePesos !== null}">${{ data.pricePesos }}</span>
-          <span v-if="data.promotionalPricePesos">${{ data.promotionalPricePesos }}</span>
-        </div>
-        <div v-if="data.priceDollar" class="price">
-          <span :class="{promotion: data.promotionalPriceDollar !== null}">{{ data.priceDollar }}USD</span>
-          <span v-if="data.promotionalPriceDollar">{{ data.promotionalPriceDollar }}USD</span>
+        <div v-if="data.price" class="price">
+          <span :class="{promotion: data.promotionalPrice !== null}">{{ data.price }}USD</span>
+          <span v-if="data.promotionalPrice">{{ data.promotionalPrice }}USD</span>
         </div>
       </div>
       <div v-else class="isntAvailable">
@@ -51,7 +50,7 @@ const admin = true;
       </div>
     </div>
 
-    <div v-if="admin && !add" class="button-container">
+    <div v-if="logged && !add" class="button-container">
       <div class="button">
         <fa icon="pencil" />
         <span>Editar</span>
@@ -62,7 +61,7 @@ const admin = true;
       </div>
     </div>
 
-    <div v-if="!admin && !add" class="button">
+    <div v-if="!logged && !add" class="button">
       <fa :icon="['fab', 'whatsapp']" />
       <span>{{ data.isAvailable ? 'Pedir por whatsapp' : 'Consultar por whatsapp' }}</span>
     </div>

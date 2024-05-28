@@ -1,19 +1,21 @@
 <script setup>
 //vue
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 //vue-router
 import { RouterLink } from 'vue-router'
 //stores
-import { useWindowStore } from '../stores/index'
+import { useWindowStore, useCategoryStore } from '../stores/index'
 const $W = useWindowStore()
+const { getCategories } = useCategoryStore()
 
 const menu = ref(false)
 const search = ref(false)
 
-document.addEventListener("backbutton", () => {
-  if(menu.value) menu.value = false
-  if(search.value) search.value = false
-}, false)
+const categories = ref();
+
+onMounted(async () => {
+  categories.value = await getCategories()
+})
 </script>
 
 <template>
@@ -30,13 +32,13 @@ document.addEventListener("backbutton", () => {
     <div class="menu" :class="{disabledL: menu === false}">
       <fa @click="menu = false" icon="times" />
       <div class="links">
-        botones
+        <span v-for="(link, index) in categories" :key="index" class="link">{{ link.name }}</span>
       </div>
     </div>
 
     <!-- logo -->
     <div class="logo">
-      <RouterLink to="/">CELULARES</RouterLink>
+      <RouterLink to="/">ROCKY_STORE</RouterLink>
     </div>
 
     <!-- buscador -->

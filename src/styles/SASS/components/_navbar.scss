@@ -1,6 +1,7 @@
 #navbar_mobile {
   @include flex(row, nowrap, space-between, center);
   padding: 1em 2em;
+  margin-bottom: 1em;
   color: $prim;
   svg {
     font-size: 1.5rem;
@@ -31,6 +32,10 @@
     .links {
       flex-grow: 1;
       @include flex(column, nowrap, center, center);
+      gap: 2rem;
+      .link {
+        font-size: 1.5rem;
+      }
     }
   }
   // .logo {
