@@ -22,7 +22,7 @@ onBeforeUnmount(() => {
   <body>
     <Navbar />
     <div id="content">
-      <RouterView />
+      <RouterView :key="$route.fullPath" />
     </div>
   </body>
 </template>

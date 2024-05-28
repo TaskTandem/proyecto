@@ -33,15 +33,39 @@
       flex-grow: 1;
       @include flex(column, nowrap, center, center);
       gap: 2rem;
+      text-align: center;
       .link {
         font-size: 1.5rem;
       }
     }
   }
-  // .logo {
-
-  // }
+  .logo {
+    font-size: 1.125rem;
+  }
   .search-button {
     width: 2rem;
+  }
+  .search {
+    height: auto;
+    .search-bar {
+      width: 100%;
+      min-height: 40px;
+      @include flex(row, nowrap, center, center);
+      gap: .5rem;
+      background-color: $prim;
+      border-radius: .5rem;
+      input {
+        border-radius: 0;
+        &::placeholder {
+          color: $accent;
+          opacity: 1;
+        }
+      }
+      svg {
+        padding: 0 .5rem;
+        margin: auto;
+        color: $accent;
+      }
+    }
   }
 }

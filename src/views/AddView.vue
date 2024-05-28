@@ -1,8 +1,12 @@
 <script setup>
 //vue
-import { reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
+//vue-router
+import { useRouter } from 'vue-router';
 //components
 import Card from '@/components/Card.vue';
+//store
+import { useCategoryStore, useProductStore } from '@/stores';
 //helpers
 import { isAuthenticated } from '@/helpers/authentication';
 
@@ -29,9 +33,31 @@ const deleteData = (model, index) => {
   data[model].splice(index, 1)
 }
 
+const categories = ref([])
+const selectParent = ref(null)
+const selectchild = ref(null)
+
+const refresh = () => {
+  selectchild.value = null
+}
+
+const addProduct = async () => {
+  data.categoryIds.push(selectParent.value)
+  if(selectchild.value) data.categoryIds.push(selectchild.value)
+  console.log(data);
+  const res = await useProductStore().addProduct(data)
+  if(res) {
+    useRouter().push('/')
+  } else {
+    alert('Hubo un error al crear el producto')
+  }
+}
+
 onMounted(async () => {
   isAuthenticated()
+  categories.value = await useCategoryStore().getCategories()
 })
+
 </script>
 
 <template>
@@ -74,6 +100,18 @@ onMounted(async () => {
         </div>
       </div>
 
+      <div class="categories">
+        <select @change="refresh" v-model="selectParent">
+          <option :value="null">Seleccionar categoria padre</option>
+          <option v-for="(category, index) in categories" :key="index" :value="category.id">{{ category.name }}</option>
+        </select>
+
+        <select v-if="selectParent && categories.find(c => c.id === selectParent).childrens.length > 0" v-model="selectchild">
+          <option :value="null">Categoria hijo</option>
+          <option v-for="(category, index) in categories.find(c => c.id === selectParent).childrens" :key="index" :value="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+
       <div @click="data.isAvailable = !data.isAvailable" class="checkbox">
         <span>¿Esta disponible?</span>
         <fa v-if="data.isAvailable" icon="check-circle" class="true" />
@@ -83,7 +121,7 @@ onMounted(async () => {
 
     <Card :data="data" :add="true" />
 
-    <div v-if="data.name && data.price && data.images.length > 0 && data.categoryIds.length > 0" class="button">
+    <div v-if="data.name && data.price && data.images.length > 0 && selectParent" class="button" @click="addProduct">
       <fa icon="plus" />
       <span>Agregar producto</span>
     </div>

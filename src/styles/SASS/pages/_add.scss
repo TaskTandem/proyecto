@@ -43,5 +43,9 @@
         color: #b90c0c;
       }
     }
+    .categories {
+      @include flex(column, nowrap, center, center);
+      gap: 1rem;
+    }
   }
 }
