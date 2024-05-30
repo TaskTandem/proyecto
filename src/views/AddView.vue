@@ -1,16 +1,18 @@
 <script setup>
 //vue
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue'
 //vue-router
-import { useRouter, useRoute } from 'vue-router';
-const router = useRouter();
-const route = useRoute();
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 //components
-import Card from '@/components/Card.vue';
+import Card from '@/components/Card.vue'
 //store
-import { useCategoryStore, useProductStore } from '@/stores';
+import { useCategoryStore, useProductStore } from '@/stores'
 //helpers
-import { isAuthenticated } from '@/helpers/authentication';
+import { isAuthenticated } from '@/helpers/authentication'
+
+const loaded = ref(false)
 
 const data = reactive({
   name: '',
@@ -47,12 +49,22 @@ const refresh = () => {
 const addProduct = async () => {
   data.categoryIds.push(selectParent.value)
   if(selectchild.value) data.categoryIds.push(selectchild.value)
-  console.log(data);
   const res = await useProductStore().addProduct(data)
   if(res) {
     router.push('/')
   } else {
     alert('Hubo un error al crear el producto')
+  }
+}
+
+const editProduct = async () => {
+  data.categoryIds.push(selectParent.value)
+  if(selectchild.value) data.categoryIds.push(selectchild.value)
+  const res = await useProductStore().editProduct(toEdit.value.id, data)
+  if(res) {
+    router.push('/')
+  } else {
+    alert('Hubo un error al editar el producto')
   }
 }
 
@@ -62,14 +74,25 @@ onMounted(async () => {
   if(route.params.id !== "new") {
     const res = await useProductStore().getProductById(route.params.id)
     toEdit.value = res
-    console.log(toEdit.value);
+    console.log(toEdit.value)
+    data.name = toEdit.value.name
+    data.price = toEdit.value.price
+    data.promotionalPrice = toEdit.value.promotionalPrice
+    data.specifications = toEdit.value.specifications
+    data.description = toEdit.value.description
+    data.images = toEdit.value.images
+    data.isAvailable = toEdit.value.isAvailable
+    selectParent.value = toEdit.value.categories[0].id
+    selectchild.value = toEdit.value.categories[0].childrens[0]?.id ?? null
+    console.log(selectchild.value);
   }
+  loaded.value = true
 })
 
 </script>
 
 <template>
-  <div class="add-container">
+  <div v-show="loaded" class="add-container">
 
     <p class="title">Producto nuevo</p>
 
@@ -93,7 +116,7 @@ onMounted(async () => {
         </div>
       </div>
 
-      <input type="text" placeholder="Descripcion" v-model="data.description">
+      <textarea placeholder="Descripcion" v-model="data.description"></textarea>
 
       <div class="add-item">
         <input id="images" type="text" placeholder="Agregar una imagen">
@@ -129,7 +152,12 @@ onMounted(async () => {
 
     <Card :data="data" :add="true" />
 
-    <div v-if="data.name && data.price && data.images.length > 0 && selectParent" class="button" @click="addProduct">
+    <div v-if="toEdit" class="button" @click="editProduct">
+      <fa icon="plus" />
+      <span>Editar producto</span>
+    </div>
+
+    <div v-else-if="data.name && data.price && data.images.length > 0 && selectParent" class="button" @click="addProduct">
       <fa icon="plus" />
       <span>Agregar producto</span>
     </div>

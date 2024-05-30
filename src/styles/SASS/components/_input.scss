@@ -15,6 +15,19 @@ input {
   }
 }
 
+textarea {
+  width: 100%;
+  margin: auto;
+  padding: .5em;
+  color: black;
+  background-color: $secondary;
+  border-radius: .5rem;
+  transition: all 100ms linear;
+  text-align: center;
+  resize: none;
+  min-height: 10rem;
+}
+
 select {
   padding: 0 .5rem;
   color: $secondary;

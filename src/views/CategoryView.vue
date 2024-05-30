@@ -15,12 +15,13 @@ const products = ref([])
 
 onMounted(async() => {
   products.value = await getProductsByCategory(route.params.id)
+  console.log(products.value)
   loaded.value = true
 })
 </script>
 
 <template>
-  <div v-show="loaded" class="search-container">
+  <div v-if="loaded" class="search-container">
     <p v-if="products.length === 0" class="title">No hay productos en este momento</p>
     <Card v-else v-for="(product, index) in products" :key="index" :data="product" />
   </div>

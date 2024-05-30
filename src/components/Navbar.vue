@@ -13,6 +13,12 @@ const menu = ref(false)
 const search = ref(false)
 
 const searchBar = ref('')
+const inputField = ref(null)
+
+const focusInput = () => {
+  search.value = true
+  inputField.value.focus();
+};
 
 const categories = ref()
 const children = ref([])
@@ -74,13 +80,13 @@ onMounted(async () => {
     </div>
 
     <!-- buscador -->
-    <div @click="search = true" class="search-button">
+    <div @click="focusInput" class="search-button">
       <fa icon="search" />
     </div>
     <div class="menu search" :class="{disabledR: search === false}">
       <div class="search-bar">
-        <fa @click="goTo(null, searchBar)" icon="search" />
-        <input v-model="searchBar" type="text" placeholder="buscar" @keyup.enter="goTo(null, searchBar)">
+        <fa @click="searchBar.length > 0 ? goTo(null, searchBar) : null" icon="search" />
+        <input ref="inputField" v-model="searchBar" type="text" placeholder="buscar" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
         <fa @click="search = false" icon="times" />
       </div>
     </div>

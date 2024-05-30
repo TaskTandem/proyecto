@@ -340,6 +340,19 @@ input::placeholder {
   color: black;
 }
 
+textarea {
+  width: 100%;
+  margin: auto;
+  padding: 0.5em;
+  color: black;
+  background-color: #A7F2BA;
+  border-radius: 0.5rem;
+  transition: all 100ms linear;
+  text-align: center;
+  resize: none;
+  min-height: 10rem;
+}
+
 select {
   padding: 0 0.5rem;
   color: #A7F2BA;
@@ -516,5 +529,4 @@ select option {
 
 .search-container {
   text-align: center;
-  margin: auto;
 }/*# sourceMappingURL=main.css.map */

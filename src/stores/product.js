@@ -50,6 +50,16 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
+  const editProduct = async (productId, data) => {
+    try {
+      await fetchWrapper.put(`products/${productId}`, data)
+      return true
+    } catch (e) {
+      console.log('Error al editar un producto', e);
+      return false
+    }
+  }
+
   const deleteProduct = async (productId) => {
     try {
       await fetchWrapper.delete(`products/${productId}`)
@@ -60,5 +70,5 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { getProducts, getProductById, getProductsByCategory, getProductsByName, addProduct, deleteProduct }
+  return { getProducts, getProductById, getProductsByCategory, getProductsByName, editProduct, addProduct, deleteProduct }
 })

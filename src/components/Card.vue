@@ -74,10 +74,10 @@ const deleteProd = async () => {
       </div>
     </div>
 
-    <div v-if="!logged && !add" class="button">
+    <a :href="`https://wa.me/5492235458947?text=${'¡Hola! Me interesa este producto: ' + data.name}`" target='_blank' v-if="!logged && !add" class="button">
       <fa :icon="['fab', 'whatsapp']" />
       <span>{{ data.isAvailable ? 'Pedir por whatsapp' : 'Consultar por whatsapp' }}</span>
-    </div>
+    </a>
 
   </div>
 </template>
