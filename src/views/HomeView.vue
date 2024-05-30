@@ -23,7 +23,7 @@ onMounted(async () => {
       <RouterLink to="/categories" class="button">
         <span>Categorias</span>
       </RouterLink>
-      <RouterLink to="/add" class="button">
+      <RouterLink to="/add/new" class="button">
         <span>Agregar producto</span>
       </RouterLink>
     </div>

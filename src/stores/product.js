@@ -12,6 +12,16 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
+  const getProductById = async (productId) => {
+    try {
+      const res = await fetchWrapper.get(`products/${productId}`)
+      return res
+    } catch (e) {
+      console.log('Error al traer los datos para editarlos', e);
+      return false
+    }
+  }
+
   const getProductsByCategory = async (categoryId) => {
     try {
       const res = await fetchWrapper.get(`products/byCategoryId/${categoryId}?isDeleted=false`)
@@ -40,5 +50,15 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { getProducts, getProductsByCategory, getProductsByName, addProduct }
+  const deleteProduct = async (productId) => {
+    try {
+      await fetchWrapper.delete(`products/${productId}`)
+      return true
+    } catch (e) {
+      console.log('Error al eliminar el producto', e);
+      return false
+    }
+  }
+
+  return { getProducts, getProductById, getProductsByCategory, getProductsByName, addProduct, deleteProduct }
 })

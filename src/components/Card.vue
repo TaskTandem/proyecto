@@ -1,7 +1,10 @@
 <script setup>
+//vue-router
+import { useRouter } from 'vue-router';
 //store
-import { useAdminStore } from '@/stores';
+import { useAdminStore, useProductStore } from '@/stores';
 const { logged } = useAdminStore()
+const { deleteProduct } = useProductStore()
 //swiper
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
@@ -9,9 +12,19 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 const modules = [Pagination];
 //props
-defineProps(['data', 'add'])
+const props = defineProps(['data', 'add'])
+const router = useRouter()
 
-const admin = false;
+const deleteProd = async () => {
+  if (confirm('¿Estas seguro que queres eliminar este producto?')) {
+    const res = await deleteProduct(props.data.id)
+    if(res) {
+      router.go()
+    } else {
+      alert('Hubo un error al eliminar el producto')
+    }
+  }
+}
 </script>
 
 <template>
@@ -33,8 +46,8 @@ const admin = false;
 
     <div class="information">
       <h1 class="name">{{ data.name }}</h1>
-      <div v-if="data.specification.length > 0" class="specifications">
-        <p v-for="(desc, index) in data.specification" :key="index">{{ desc }}</p>
+      <div v-if="data.specifications.length > 0" class="specifications">
+        <p v-for="(desc, index) in data.specifications" :key="index">{{ desc }}</p>
       </div>
       <div class="description" v-if="data.description">
         <p>{{ data.description }}</p>
@@ -51,11 +64,11 @@ const admin = false;
     </div>
 
     <div v-if="logged && !add" class="button-container">
-      <div class="button">
+      <RouterLink :to="`/add/${data.id}`" class="button">
         <fa icon="pencil" />
         <span>Editar</span>
-      </div>
-      <div class="button delete">
+      </RouterLink>
+      <div @click="deleteProd" class="button delete">
         <fa icon="times" />
         <span>Eliminar</span>
       </div>

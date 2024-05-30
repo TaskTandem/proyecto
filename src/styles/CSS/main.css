@@ -224,6 +224,7 @@ body #content {
 
 .card-container {
   width: 100%;
+  margin: 1rem 0;
 }
 .card-container .images {
   width: 100%;

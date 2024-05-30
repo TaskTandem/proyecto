@@ -2,7 +2,9 @@
 //vue
 import { ref, reactive, onMounted } from 'vue';
 //vue-router
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter();
+const route = useRoute();
 //components
 import Card from '@/components/Card.vue';
 //store
@@ -14,7 +16,7 @@ const data = reactive({
   name: '',
   price: null,
   promotionalPrice: null,
-  specification: [],
+  specifications: [],
   description: '',
   images: [],
   categoryIds: [],
@@ -33,6 +35,7 @@ const deleteData = (model, index) => {
   data[model].splice(index, 1)
 }
 
+const toEdit = ref(null)
 const categories = ref([])
 const selectParent = ref(null)
 const selectchild = ref(null)
@@ -47,7 +50,7 @@ const addProduct = async () => {
   console.log(data);
   const res = await useProductStore().addProduct(data)
   if(res) {
-    useRouter().push('/')
+    router.push('/')
   } else {
     alert('Hubo un error al crear el producto')
   }
@@ -56,6 +59,11 @@ const addProduct = async () => {
 onMounted(async () => {
   isAuthenticated()
   categories.value = await useCategoryStore().getCategories()
+  if(route.params.id !== "new") {
+    const res = await useProductStore().getProductById(route.params.id)
+    toEdit.value = res
+    console.log(toEdit.value);
+  }
 })
 
 </script>
@@ -73,15 +81,15 @@ onMounted(async () => {
       <input type="number" placeholder="Promocion en dolares" v-model="data.promotionalPrice">
 
       <div class="add-item">
-        <input id="specification" type="text" placeholder="Agregar una especificacion">
-        <div @click="addData('specification')" class="button add-form">
+        <input id="specifications" type="text" placeholder="Agregar una especificacion">
+        <div @click="addData('specifications')" class="button add-form">
           <fa icon="plus" />
         </div>
       </div>
-      <div v-if="data.specification.length > 0" class="list">
-        <div v-for="(item, index) in data.specification" :key="index" class="item">
+      <div v-if="data.specifications.length > 0" class="list">
+        <div v-for="(item, index) in data.specifications" :key="index" class="item">
           <p>{{ item }}</p>
-          <fa @click="deleteData('specification', index)" icon="close" />
+          <fa @click="deleteData('specifications', index)" icon="close" />
         </div>
       </div>
 
