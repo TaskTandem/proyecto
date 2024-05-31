@@ -1,0 +1,27 @@
+.footer-container {
+  @include flex(column, nowrap, center, center);
+  gap: 1rem;
+  padding: 1rem;
+  .logo {
+    color: $prim;
+    font-size: 1.25rem;
+  }
+  .social {
+    svg {
+      margin: 0 1rem;
+      font-size: 2rem;
+    }
+  }
+  .devs {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-align: center;
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, min-content);
+      gap: 1rem;
+      color: $secondary;
+    }
+  }
+}

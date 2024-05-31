@@ -5,6 +5,7 @@ import { onMounted, onBeforeUnmount } from 'vue'
 import { RouterView } from 'vue-router'
 //components
 import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 //stores
 import { useWindowStore } from './stores/index'
 const $W = useWindowStore()
@@ -24,5 +25,6 @@ onBeforeUnmount(() => {
     <div id="content">
       <RouterView :key="$route.fullPath" />
     </div>
+    <Footer />
   </body>
 </template>

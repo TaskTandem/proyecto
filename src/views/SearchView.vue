@@ -22,6 +22,8 @@ onMounted(async() => {
 <template>
   <div v-show="loaded" class="search-container">
     <p class="title">{{ products.length > 0 ? `Productos encontrados por buscar ${route.params.name}` : `No se encontraron productos por buscar "${route.params.name}"` }}</p>
-    <Card v-if="products.length > 0" v-for="(product, index) in products" :key="index" :data="product" />
+    <div class="cards-container">
+      <Card v-if="products.length > 0" v-for="(product, index) in products" :key="index" :data="product" />
+    </div>
   </div>
 </template>

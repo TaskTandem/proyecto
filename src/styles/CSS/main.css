@@ -255,7 +255,6 @@ body #content {
 #navbar .logo {
   flex-grow: 1;
   color: #2BD9A8;
-  font-size: 1.25rem;
   transition: color 100ms linear;
 }
 #navbar .logo:hover {
@@ -266,11 +265,10 @@ body #content {
   flex-grow: 1;
 }
 #navbar .categories > span {
-  font-size: 1.25rem;
   width: 100%;
   color: #2BD9A8;
   cursor: pointer;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
 }
 #navbar .categories > span.active {
   color: #A7F2BA;
@@ -306,37 +304,78 @@ body #content {
 }
 #navbar .search {
   flex-grow: 3;
+  position: relative;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   background: #2BD9A8;
-  height: 2.5rem;
+  height: 2.25rem;
   border-radius: 0.5rem;
 }
 #navbar .search svg {
+  position: absolute;
+  left: 0;
   margin: auto;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   width: 2rem;
   padding: 0 0.5rem;
   cursor: pointer;
 }
 #navbar .search input {
   height: 100%;
-  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.9rem;
 }
 
-.card-container {
+.footer-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.footer-container .logo {
+  color: #2BD9A8;
+  font-size: 1.25rem;
+}
+.footer-container .social svg {
+  margin: 0 1rem;
+  font-size: 2rem;
+}
+.footer-container .devs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+.footer-container .devs .links {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  gap: 1rem;
+  color: #A7F2BA;
+}
+
+.cards-container {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.cards-container .card-container {
   width: 100%;
   min-width: 19rem;
   max-width: 35rem;
   margin: 1rem 0;
 }
-.card-container .images {
+.cards-container .card-container .images {
   width: 100%;
   height: 300px;
 }
-.card-container .information {
+.cards-container .card-container .information {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -345,58 +384,58 @@ body #content {
   text-align: center;
   padding: 1em 1.25em;
 }
-.card-container .information .name {
+.cards-container .card-container .information .name {
   max-width: 100%;
   font-size: 1.75rem;
   color: #2BD9A8;
 }
-.card-container .information .specifications {
+.cards-container .card-container .information .specifications {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   gap: 0.1rem;
 }
-.card-container .information .description {
+.cards-container .card-container .information .description {
   color: grey;
   font-size: 0.8rem;
 }
-.card-container .information .price-container {
+.cards-container .card-container .information .price-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 }
-.card-container .information .price-container .price {
+.cards-container .card-container .information .price-container .price {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
-.card-container .information .price-container .price span {
+.cards-container .card-container .information .price-container .price span {
   font-size: 1.25rem;
   color: #2BD9A8;
 }
-.card-container .information .price-container .price span.promotion {
+.cards-container .card-container .information .price-container .price span.promotion {
   text-decoration: line-through;
   color: #A7F2BA;
 }
-.card-container .information .isntAvailable {
+.cards-container .card-container .information .isntAvailable {
   color: grey;
   font-size: 2rem;
 }
-.card-container .button-container {
+.cards-container .card-container .button-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-.card-container .button-container .button {
+.cards-container .card-container .button-container .button {
   margin: 0;
 }
-.card-container .button-container .button.delete {
+.cards-container .card-container .button-container .button.delete {
   color: white;
   background: #b90c0c;
 }
@@ -502,11 +541,7 @@ select option {
 }
 
 .login-container {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  margin: 2rem 0;
 }
 .login-container .form {
   display: flex;
@@ -519,6 +554,7 @@ select option {
   padding: 2em;
   background: #0F4037;
   border-radius: 0.5rem;
+  margin: auto;
 }
 
 .add-container {

@@ -59,6 +59,11 @@ onMounted(async () => {
       <RouterLink to="/">ROCKY STORE</RouterLink>
     </div>
 
+    <div class="search">
+      <fa @click="searchBar.length > 0 ? goTo(null, searchBar) : null" icon="search" />
+      <input ref="inputField" v-model="searchBar" type="text" placeholder="BUSCAR" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
+    </div>
+
     <div @mouseenter="menu = true" @mouseleave="menu = false; children = []" class="categories">
       <span :class="{active: menu}" @click="children = []">CATEGORIAS</span>
         <div id="links" :class="{active: menu}">
@@ -70,11 +75,6 @@ onMounted(async () => {
             <span v-for="(link, index) in children" :key="index" @click="goTo(link.id)" class="link">{{ capitalize(link.name) }}</span>
           </template>
       </div>
-    </div>
-
-    <div class="search">
-      <fa @click="searchBar.length > 0 ? goTo(null, searchBar) : null" icon="search" />
-      <input ref="inputField" v-model="searchBar" type="text" placeholder="buscar" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
     </div>
 
   </div>
@@ -110,7 +110,7 @@ onMounted(async () => {
     <div class="menu search" :class="{disabledR: search === false}">
       <div class="search-bar">
         <fa @click="searchBar.length > 0 ? goTo(null, searchBar) : null" icon="search" />
-        <input ref="inputField" v-model="searchBar" type="text" placeholder="buscar" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
+        <input ref="inputField" v-model="searchBar" type="text" placeholder="BUSCAR" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
         <fa @click="search = false" icon="times" />
       </div>
     </div>

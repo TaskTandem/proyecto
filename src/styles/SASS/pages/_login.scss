@@ -1,6 +1,5 @@
 .login-container {
-  @include flex(column, nowrap, center, center);
-  flex-grow: 1;
+  margin: 2rem 0;
   .form {
     @include flex(column, nowrap, center, center);
     gap: .5rem;
@@ -9,5 +8,6 @@
     padding: 2em;
     background: $accent;
     border-radius: .5rem;
+    margin: auto;
   }
 }

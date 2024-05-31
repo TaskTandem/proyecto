@@ -23,6 +23,8 @@ onMounted(async() => {
 <template>
   <div v-if="loaded" class="search-container">
     <p v-if="products.length === 0" class="title">No hay productos en este momento</p>
-    <Card v-else v-for="(product, index) in products" :key="index" :data="product" />
+    <div v-else class="cards-container">
+      <Card v-for="(product, index) in products" :key="index" :data="product" />
+    </div>
   </div>
 </template>

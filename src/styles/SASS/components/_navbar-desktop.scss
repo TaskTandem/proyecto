@@ -10,7 +10,6 @@
   .logo {
     flex-grow: 1;
     color: $prim;
-    font-size: 1.25rem;
     transition: color 100ms linear;
     &:hover {
       color: $secondary;
@@ -20,11 +19,10 @@
     position: relative;
     flex-grow: 1;
     > span {
-      font-size: 1.25rem;
       width: 100%;
       color: $prim;
       cursor: pointer;
-      padding: 1rem 0;
+      padding: 1.5rem 0;
       &.active {
         color: $secondary;
       }
@@ -59,20 +57,23 @@
   }
   .search {
     flex-grow: 3;
+    position: relative;
     @include flex(row, nowrap, center, center);
     background: $prim;
-    height: 2.5rem;
+    height: 2.25rem;
     border-radius: .5rem;
     svg {
+      position: absolute;
+      left: 0;
       margin: auto;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       width: 2rem;
       padding: 0 .5rem;
       cursor: pointer;
     }
     input {
       height: 100%;
-      border-radius: 0 .5rem .5rem 0;
+      font-size: .9rem;
     }
   }
 }
