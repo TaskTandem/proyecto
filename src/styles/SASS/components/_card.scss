@@ -1,5 +1,7 @@
 .card-container {
   width: 100%;
+  min-width: 19rem;
+  max-width: 35rem;
   margin: 1rem 0;
   .images {
     width: 100%;
@@ -54,4 +56,18 @@
       }
     }
   }
+}
+
+@media (min-width: 768px) {
+.cards-container {
+  width: 100%;
+  max-width: 75rem;
+  margin: 1rem 0;
+  @include flex(row, wrap, center, center);
+  gap: 1rem;
+  .card-container {
+    flex-grow: 1;
+    flex-basis: 19rem;
+  }
+}
 }

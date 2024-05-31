@@ -1,5 +1,8 @@
 .add-container {
   @include flex(column, nowrap, start, center);
+  width: 100%;
+  max-width: 75rem;
+  margin: auto;
   .form {
     @include flex(column, nowrap, center, center);
     gap: 1rem;

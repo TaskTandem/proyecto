@@ -27,7 +27,7 @@ const login = async () => {
   <div class="login-container">
     <div class="form">
       <input type="text" placeholder="Email" v-model="data.email">
-      <input type="text" placeholder="Contraseña" v-model="data.password">
+      <input type="password" placeholder="Contraseña" v-model="data.password">
       <div @click="login" class="button">
         <fa icon="sign-in" />
         <span>Entrar</span>

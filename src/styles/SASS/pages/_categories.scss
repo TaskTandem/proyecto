@@ -1,6 +1,9 @@
 .category-container {
   @include flex(column, nowrap, center, center);
   gap: 4rem;
+  width: 100%;
+  max-width: 75rem;
+  margin: auto;
   .add {
     display: none;
     width: 90%;

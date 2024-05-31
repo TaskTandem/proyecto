@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue';
 //vue-router
 import { RouterLink, useRouter } from 'vue-router'
 const router = useRouter();
+//helpers
+import { capitalize } from 'vue';
 //stores
 import { useWindowStore, useCategoryStore } from '../stores/index'
 const $W = useWindowStore()
@@ -52,7 +54,29 @@ onMounted(async () => {
 <template>
 
   <div v-if="$W.width > 768" id="navbar">
-    navbar
+
+    <div class="logo">
+      <RouterLink to="/">ROCKY STORE</RouterLink>
+    </div>
+
+    <div @mouseenter="menu = true" @mouseleave="menu = false; children = []" class="categories">
+      <span :class="{active: menu}" @click="children = []">CATEGORIAS</span>
+        <div id="links" :class="{active: menu}">
+          <template v-if="children.length === 0">
+            <span v-for="(link, index) in categories" :key="index" @click="getChildren(link)" class="link">{{ capitalize(link.name) }}</span>
+          </template>
+
+          <template v-else>
+            <span v-for="(link, index) in children" :key="index" @click="goTo(link.id)" class="link">{{ capitalize(link.name) }}</span>
+          </template>
+      </div>
+    </div>
+
+    <div class="search">
+      <fa @click="searchBar.length > 0 ? goTo(null, searchBar) : null" icon="search" />
+      <input ref="inputField" v-model="searchBar" type="text" placeholder="buscar" @keyup.enter="searchBar.length > 0 ? goTo(null, searchBar) : null">
+    </div>
+
   </div>
 
   <div v-else id="navbar_mobile">
@@ -76,7 +100,7 @@ onMounted(async () => {
 
     <!-- logo -->
     <div class="logo">
-      <RouterLink to="/">ROCKY_STORE</RouterLink>
+      <RouterLink to="/">ROCKY STORE</RouterLink>
     </div>
 
     <!-- buscador -->

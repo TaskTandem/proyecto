@@ -5,6 +5,7 @@
     @include flex(column, nowrap, center, center);
     gap: .5rem;
     width: 90%;
+    max-width: 30rem;
     padding: 2em;
     background: $accent;
     border-radius: .5rem;

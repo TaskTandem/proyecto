@@ -27,6 +27,8 @@ onMounted(async () => {
         <span>Agregar producto</span>
       </RouterLink>
     </div>
-    <Card v-for="(product, index) in products" :data="product" :key="index" />
+    <div class="cards-container">
+      <Card v-for="(product, index) in products" :data="product" :key="index" />
+    </div>
   </div>
 </template>
