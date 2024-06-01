@@ -4,10 +4,11 @@ import { ref, onMounted } from 'vue';
 //vue-router
 import { RouterLink } from 'vue-router'
 //components
-import Card from '@/components/Card.vue'
+import CardContainer from '@/components/CardContainer.vue';
 //store
-import { useProductStore, useAdminStore } from '@/stores'
+import { useProductStore, useAdminStore, useWindowStore } from '@/stores'
 const $P = useProductStore()
+const $W = useWindowStore()
 const { logged } = useAdminStore()
 
 const products = ref()
@@ -27,8 +28,6 @@ onMounted(async () => {
         <span>Agregar producto</span>
       </RouterLink>
     </div>
-    <div class="cards-container">
-      <Card v-for="(product, index) in products" :data="product" :key="index" />
-    </div>
+    <CardContainer :data="products" />
   </div>
 </template>

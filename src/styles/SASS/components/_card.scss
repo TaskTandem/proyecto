@@ -68,12 +68,13 @@
 .cards-container {
   width: 100%;
   max-width: 75rem;
-  margin: 1rem 0;
-  @include flex(row, wrap, center, center);
-  gap: 1rem;
-  .card-container {
-    flex-grow: 1;
-    flex-basis: 19rem;
+  margin: 1rem auto;
+  .swiper-button-prev:after, .swiper-button-next:after {
+    font-size: 2rem !important;
+    background: $accent;
+    padding: .5rem;
+    color: $prim;
   }
 }
+
 }

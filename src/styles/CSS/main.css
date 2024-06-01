@@ -444,16 +444,13 @@ body #content {
   .cards-container {
     width: 100%;
     max-width: 75rem;
-    margin: 1rem 0;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    margin: 1rem auto;
   }
-  .cards-container .card-container {
-    flex-grow: 1;
-    flex-basis: 19rem;
+  .cards-container .swiper-button-prev:after, .cards-container .swiper-button-next:after {
+    font-size: 2rem !important;
+    background: #0F4037;
+    padding: 0.5rem;
+    color: #2BD9A8;
   }
 }
 .button {

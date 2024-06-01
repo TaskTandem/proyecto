@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 //component
-import Card from '@/components/Card.vue';
+import CardContainer from '@/components/CardContainer.vue';
 //store
 import { useProductStore } from '@/stores'
 const { getProductsByCategory } = useProductStore()
@@ -23,8 +23,6 @@ onMounted(async() => {
 <template>
   <div v-if="loaded" class="search-container">
     <p v-if="products.length === 0" class="title">No hay productos en este momento</p>
-    <div v-else class="cards-container">
-      <Card v-for="(product, index) in products" :key="index" :data="product" />
-    </div>
+    <CardContainer :data="products" />
   </div>
 </template>
