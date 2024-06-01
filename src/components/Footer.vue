@@ -11,7 +11,7 @@ import { RouterLink } from 'vue-router';
     </div>
 
     <div class="social">
-      <a href="https://www.instagram.com/rockystoremdp/" target="_blank"><fa :icon="['fab', 'instagram']" /></a>
+      <a href="https://www.instagram.com/rockystoremdq/" target="_blank"><fa :icon="['fab', 'instagram']" /></a>
       <a href="https://www.facebook.com/profile.php?id=61559945134594" target="_blank"><fa :icon="['fab', 'facebook']" /></a>
       <a href="https://wa.me/5492235458947?text=¡Hola!" target="_blank"><fa :icon="['fab', 'whatsapp']" /></a>
     </div>

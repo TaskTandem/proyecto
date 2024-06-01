@@ -35,6 +35,7 @@ const deleteProd = async () => {
         :pagination="{
           clickable: true,
         }"
+        :grab-cursor="true"
         :loop="data.images.length > 1"
         :modules="modules"
       >

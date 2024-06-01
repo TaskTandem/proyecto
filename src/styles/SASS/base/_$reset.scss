@@ -71,9 +71,16 @@ body {
 
 @media (min-width: 768px) {
   ::-webkit-scrollbar {
-    width: 10px;
+    width: .5rem;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: $clr;
+    background-color: $secondary;
+  }
+  body {
+    #content {
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 0;
+    }
   }
 }
